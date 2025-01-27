@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>lista de professores</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+                      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                    <style>
+                        a{
+                            color: brown;
+                        }
+                        a:hover{
+                            color: crimson;
+                        }
+                    </style>
+                    </head>
+                    <body style="background-color: rgb(85, 85, 85); padding: 5%;">
+                        <div style="background-color: darkgrey; width: 80%; margin: auto;">
+                            <h1 style="text-align: center;">Lista de professores</h1>
+                            <table class="table">
+                                <tr style="margin: auto">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Salario</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="professor : ${professores}">
+                                        <th scope="row" th:text="${professor.getId()}">Id_professor</th>
+                                        <td th:text="${professor.nome}">Nome_professor</td>
+                                        <td th:text="${professor.salario}">Salario_professor</td>
+                                        <td th:text="${professor.status}">Status_professor</td>
+                                        <td><a href="">detalhes</a></td>
+                                        <td><a href="">editar</a></td>
+                                        <td><a href="">remover</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="/professores/novo" style="text-align: center; width: 100%;">novo professor</a>
+                        </div>
+                    </body>
+
+                    </html>

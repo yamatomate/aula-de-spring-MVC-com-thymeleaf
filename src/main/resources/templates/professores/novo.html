@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>novo Professor</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+                      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                    <style>
+                        input{
+                            margin-bottom: 6px;
+                            margin-left: 5px;
+                        }
+                        #nomeProfessor{
+                            width: 35%;
+                        }
+                        select{
+                            width: 25%; 
+                            margin-left: 5px;
+                        }
+                        button{
+                            margin-top: 20px;
+                        }
+                        button:hover{
+                            background-color: background;
+                        }
+                        img:hover{
+                            cursor: wait;
+                        }
+                        
+                        a{
+                            color: brown;
+                        }
+                        a:hover{
+                            color: crimson;
+                        }
+                    </style>
+                    </head>
+                    <body style="background-color: rgb(85, 85, 85);">
+                        <div style="background-color: darkgrey; height: 60%; width: 80%; margin: auto; padding: 25px;">
+                            
+                            <form action="/professores" method="POST">
+                                
+                                <label>Nome do Professor:</label> <br>
+                                <input type="text" id="nomeProfessor" name="nomeDTO">
+                                <br>
+                                    
+                                <label>Salario do Professor:</label> <br>
+                                <input type="number" min="1000" name="salarioDTO">
+                                <br>
+                                    
+                                    <label>Status do Professor:</label> <br>
+                                        
+                                <select name="statusProfessorDTO">
+                                    <option value="porra">porra</option>
+                                    <option th:each="status : ${statusProfessor}" th:value="${status}" th:text="${status}"></option>>
+                                </select>
+                                <br>
+                                    
+                                <button type="submit">Enviar</button>
+                            </form>
+                            <br>
+                           <a href="professores">voltar</a>
+                        </div>
+                        <img src="https://i.pinimg.com/originals/77/85/fc/7785fca11d1f66e51627d67d3438cdf7.gif" style="display: block; margin: auto; margin-top: 30px; width: 30%; height: auto;">
+
+                    </body>
+
+                    </html>
