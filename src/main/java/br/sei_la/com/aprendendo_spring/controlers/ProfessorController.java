@@ -45,10 +45,18 @@ public class ProfessorController {
 
 
 @PostMapping("/professores")
-public String SalvarNovoProfessor(RequisicaoNovoProf professorNV){//o correto seria criar mas usarei salvar
+public String SalvarNovoProfessor(@Valid RequisicaoNovoProf professorNV, BindingResult bindingResult){//o correto seria criar mas usarei salvar
         System.out.println("**************************\nnovo professor criado: "
                 +professorNV.toString()+
                 "\n**************************");
-        return "redirect:/professores";
+        System.out.println(bindingResult);
+        if(bindingResult.hasErrors()){
+            System.out.println("deu erro!!");
+            return "redirect:/professores/novo";
+        } else {
+            Professor professor = professorNV.toProfessor();
+            this.professorRepository.save(professor);
+            return "redirect:/professores";
+        }
     }
 }
