@@ -40,19 +40,19 @@
                     <body style="background-color: rgb(85, 85, 85);">
                         <div style="background-color: darkgrey; height: 60%; width: 80%; margin: auto; padding: 25px;">
                             
-                            <form action="/professores" method="POST">
+                            <form th:object="${requisicaoNovoProf}" action="/professores" method="POST">
                                 
                                 <label>Nome do Professor:</label> <br>
-                                <input type="text" id="nomeProfessor" name="nomeDTO">
+                                <input type="text" id="nomeProfessor" th:field="*{nomeDTO}">
                                 <br>
                                     
                                 <label>Salario do Professor:</label> <br>
-                                <input type="number" min="1000" name="salarioDTO">
+                                <input type="number" min="1000" th:field="*{salarioDTO}">
                                 <br>
                                     
                                     <label>Status do Professor:</label> <br>
                                         
-                                <select name="statusProfessorDTO">
+                                <select th:field="*{statusProfessorDTO}">
                                     <option value="porra">porra</option>
                                     <option th:each="status : ${statusProfessor}" th:value="${status}" th:text="${status}"></option>>
                                 </select>
