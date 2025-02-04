@@ -58,7 +58,7 @@
                     <label>Status do Professor:</label> <br>
                         
                     <select class="form-select" th:errorclass="is-invalid" id="tamanho" th:field="*{statusProfessorDTO}">
-                        <option value="porra">porra</option>
+
                         <option th:each="status : ${statusProfessor}" th:value="${status}" th:text="${status}"></option>
                     </select>
                         
