@@ -1,87 +1,42 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<head>
-    <title>Lista de Professores</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        :root {
-            --cor-cinza1: #555555;
-            --cor-cinza2:  #808080;
-        }
-        a {
-            color: brown;
-        }
-        a:hover {
-            color: crimson;
-        }
-        .container-custom {
-            background-color: darkgrey;
-            width: 80%;
-            margin: auto;
-            padding: 25px;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .tabelo {
-            width: 100%;
-            border-radius: 15px;
-            overflow: auto;
-            border-collapse: collapse; /* Remove espaços entre as bordas */
-        }
-        .tabelo th {
-            color: white;
-            background-color: #696969;
-            padding: 4px;
-            border-right: 1px solid var(--cor-cinza1);
-            border-bottom: 1px solid var(--cor-cinza1);
-        }
-        .tabelo td {
-            border-right: 1px solid var(--cor-cinza1);
-            border-bottom: 1px solid var(--cor-cinza2);
-        }
-        .tabelo tr:nth-child(even) {
-            background-color: #cccccc;
-        }
-        .tabelo tr:nth-child(odd) {
-            background-color: #8a8a8a;
-        }
-        #ajeita {
-            text-align: center;
-        }
-        .btn-custon{
-            margin: 10px;
-        }
-    </style>
+
+<head th:insert="~{fragmentos :: cabeca('Lista de professores')}">
+
 </head>
-<body style="background-color: rgb(85, 85, 85); padding: 5%;">
-    <div class="container container-custom">
-        <h1 style="text-align: center;">Lista de Professores</h1>
-        <table class="tabelo">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nome</th>
-                    <th>Salário</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="professor : ${professores}">
-                    <th scope="row" th:text="${professor.getId()}">Id_professor</th>
-                    <td th:text="${professor.nome}">Nome_professor</td>
-                    <td th:text="${professor.salario}">Salário_professor</td>
-                    <td th:text="${professor.status}">Status_professor</td>
-                    <td id="ajeita">
-                        <a href="" class="btn btn-primary">detalhes</a> |
-                        <a href="" class="btn btn-success">editar</a> |
-                        <a href="" class="btn btn-danger">remover</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="/professores/novo" class="btn btn-success btn-custon">Novo Professor +</a>
+
+<body>
+    <div class="container corpo">
+        <header th:replace="fragmentos :: cabecalho">
+            <p>era para ter algo aqui??kkk</p>
+        </header>
+        <h3 style="text-align: center;">Lista de Professores</h3>
+        <div class="tabelo_redondo">
+            <table class="tabelo">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Salário</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="professor : ${professores}">
+                        <th scope="row" th:text="${professor.getId()}">Id_professor</th>
+                        <td th:text="${professor.nome}">Nome_professor</td>
+                        <td th:text="${professor.salario}">Salário_professor</td>
+                        <td th:text="${professor.status}">Status_professor</td>
+                        <td id="ajeita">
+                            <a href="" class="btn btn-primary">detalhes</a> |
+                            <a href="" class="btn btn-success">editar</a> |
+                            <a href="" class="btn btn-danger">remover</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="/professores/novo" class="btn btn-success espaco-cima">Novo Professor +</a>
     </div>
 </body>

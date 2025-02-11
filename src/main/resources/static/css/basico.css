@@ -1,0 +1,66 @@
+body {
+    background-color: rgb(85, 85, 85);
+    padding: 5%;
+}
+
+.corpo {
+    background-color: rgb(179, 179, 179);
+    width: 80%;
+    margin: auto;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+a {
+    color:brown;
+}
+a:hover {
+    color: crimson;
+}
+
+:root {
+    --cor-cinza1: #555555;
+    --cor-cinza2: #808080;
+}
+
+.tabelo_redondo{
+    background-color: #696969;
+    padding: 7px;
+    border-radius: 5px;
+}
+.tabelo {
+    width: 100%;
+    padding: 2px;
+    overflow: auto;
+    border-collapse: collapse;
+    /* Remove espaços entre as bordas */
+}
+
+.tabelo th {
+    color: white;
+    background-color: #696969;
+    padding: 4px;
+    border-right: 1px solid var(--cor-cinza1);
+    border-bottom: 1px solid var(--cor-cinza1);
+}
+
+.tabelo td {
+    border-right: 1px solid var(--cor-cinza1);
+    border-bottom: 1px solid var(--cor-cinza2);
+}
+
+.tabelo tr:nth-child(even) {
+    background-color: #cccccc;
+}
+
+.tabelo tr:nth-child(odd) {
+    background-color: #8a8a8a;
+}
+
+#ajeita {
+    text-align: center;
+}
+
+.espaco-cima{
+    margin-top: 12px;
+}

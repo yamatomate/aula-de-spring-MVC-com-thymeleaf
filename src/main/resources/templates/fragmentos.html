@@ -1,0 +1,26 @@
+<head th:fragment="cabeca(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/basico.css">
+    <title th:text="${titulo}">pagina?</title>
+</head>
+
+<header th:fragment="cabecalho">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a href="/" class="nav-link active">Home</a>
+        </li>
+        <li class="nav-item">
+            <a href="/professores" class="nav-link">Professores</a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="nav-link">Alunos</a>
+        </li>
+
+    </ul>
+    <h2>Sistema de registro escolar</h2>
+</header>

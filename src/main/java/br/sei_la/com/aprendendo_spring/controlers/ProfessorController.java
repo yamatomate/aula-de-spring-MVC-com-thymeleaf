@@ -27,7 +27,7 @@ public class ProfessorController {
 
     @Autowired
     ProfessorRepository professorRepository;
-
+    
     @GetMapping("/professores")
     public ModelAndView index() {
         List<Professor> professores = this.professorRepository.findAll();
