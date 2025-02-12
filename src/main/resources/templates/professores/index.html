@@ -7,10 +7,9 @@
 
 <body>
     <div class="container corpo">
-        <header th:replace="fragmentos :: cabecalho">
+        <header th:replace="~{fragmentos :: cabecalho('Lista de Professores')}">
             <p>era para ter algo aqui??kkk</p>
         </header>
-        <h3 style="text-align: center;">Lista de Professores</h3>
         <div class="tabelo_redondo">
             <table class="tabelo">
                 <thead>
@@ -29,7 +28,7 @@
                         <td th:text="${professor.salario}">Salário_professor</td>
                         <td th:text="${professor.status}">Status_professor</td>
                         <td id="ajeita">
-                            <a href="" class="btn btn-primary">detalhes</a> |
+                            <a th:href="@{/professores/{professorID}(professorID = ${professor.id})}" class="btn btn-primary">detalhes</a> |
                             <a href="" class="btn btn-success">editar</a> |
                             <a href="" class="btn btn-danger">remover</a>
                         </td>

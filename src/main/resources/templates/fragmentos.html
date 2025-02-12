@@ -9,7 +9,7 @@
     <title th:text="${titulo}">pagina?</title>
 </head>
 
-<header th:fragment="cabecalho">
+<header th:fragment="cabecalho(texto)">
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a href="/" class="nav-link"
@@ -18,13 +18,14 @@
         </li>
         <li class="nav-item">
             <a href="/professores" 
-               th:classappend="${#strings.startsWith(caminho, '/professor')} ? 'active' : ''"
+               th:classappend="${#strings.startsWith(caminho, '/professores')} ? 'active' : ''"
                class="nav-link">Professores</a>
+
         </li>
         <li class="nav-item">
             <a href="" class="nav-link">Alunos</a>
         </li>
 
     </ul>
-    <h2>Sistema de registro escolar</h2>
+    <h2 th:text="${texto}">Sistema de registro escolar</h2>
 </header>

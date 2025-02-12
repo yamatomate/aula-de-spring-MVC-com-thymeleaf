@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <html>
-    <head th:insert="fragmentos :: cabeca('Home')">
+    <head th:insert="~{fragmentos :: cabeca('Home')}">
     </head>
     <body>
         <div class="container corpo">
 
-            <header th:replace="fragmentos :: cabecalho">
+            <header th:replace="~{fragmentos :: cabecalho('Sistema escolar')}">
 
             </header>
 
