@@ -12,10 +12,14 @@
 <header th:fragment="cabecalho">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a href="/" class="nav-link active">Home</a>
+            <a href="/" class="nav-link"
+            th:classappend="${caminho == 'home'} ? 'active' : ''"
+            >Home</a>
         </li>
         <li class="nav-item">
-            <a href="/professores" class="nav-link">Professores</a>
+            <a href="/professores" 
+               th:classappend="${caminho == 'professor'} ? 'active' : ''"
+               class="nav-link">Professores</a>
         </li>
         <li class="nav-item">
             <a href="" class="nav-link">Alunos</a>
