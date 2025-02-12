@@ -13,12 +13,12 @@
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a href="/" class="nav-link"
-            th:classappend="${caminho == 'home'} ? 'active' : ''"
+            th:classappend="${caminho == '/'} ? 'active' : ''"
             >Home</a>
         </li>
         <li class="nav-item">
             <a href="/professores" 
-               th:classappend="${caminho == 'professor'} ? 'active' : ''"
+               th:classappend="${#strings.startsWith(caminho, '/professor')} ? 'active' : ''"
                class="nav-link">Professores</a>
         </li>
         <li class="nav-item">

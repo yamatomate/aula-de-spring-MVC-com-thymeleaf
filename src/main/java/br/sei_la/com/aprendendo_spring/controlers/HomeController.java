@@ -5,6 +5,7 @@
 package br.sei_la.com.aprendendo_spring.controlers;
 
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
     
     @GetMapping("/")
-    public ModelAndView home(){
+    public ModelAndView home(HttpServletRequest request){
         ModelAndView mvHome = new ModelAndView("/home");
-        mvHome.addObject("caminho", "home");
+        mvHome.addObject("caminho", request.getRequestURI());
         return mvHome;
     }
 }

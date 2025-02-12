@@ -17,6 +17,7 @@ import br.sei_la.com.aprendendo_spring.models.Professor;
 import br.sei_la.com.aprendendo_spring.models.StatusProfessor;
 import br.sei_la.com.aprendendo_spring.repository.ProfessorRepository;
 import dto.RequisicaoNovoProf;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 /**
@@ -30,19 +31,19 @@ public class ProfessorController {
     ProfessorRepository professorRepository;
     
     @GetMapping("/professores")
-    public ModelAndView index() {
+    public ModelAndView index(HttpServletRequest request) {
         List<Professor> professores = this.professorRepository.findAll();
         ModelAndView mv = new ModelAndView("professores/index");
-        mv.addObject("caminho", "professor"); 
+        mv.addObject("caminho", request.getRequestURI());
         mv.addObject("professores", professores);
         return mv;
     }
 
     
     @GetMapping("/professores/novo")
-    public ModelAndView NovoProfessor(RequisicaoNovoProf requisicao) {
+    public ModelAndView NovoProfessor(HttpServletRequest request, RequisicaoNovoProf requisicao) {
         ModelAndView mvProfessorNovo = new ModelAndView("professores/novo");
-        mvProfessorNovo.addObject("caminho", "professor"); 
+        mvProfessorNovo.addObject("caminho", request.getRequestURI()); 
         mvProfessorNovo.addObject("statusProfessor", StatusProfessor.values());
         return mvProfessorNovo;
     }
