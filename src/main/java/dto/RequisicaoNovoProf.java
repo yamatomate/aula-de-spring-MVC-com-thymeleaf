@@ -25,6 +25,12 @@ public class RequisicaoNovoProf {
     @DecimalMin(value = "1000.00")
     private BigDecimal salarioDTO;
 
+    public void fromProfessor(Professor professor){
+        this.nomeDTO = professor.getNome();
+        this.salarioDTO = professor.getSalario();
+        this.statusProfessorDTO = professor.getStatus();
+    }
+    
     public Professor toProfessor() {
         Professor professor = new Professor(this.nomeDTO, this.salarioDTO, this.statusProfessorDTO);
         return professor;

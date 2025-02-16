@@ -4,6 +4,7 @@
  */
 package br.sei_la.com.aprendendo_spring.models;
 
+import dto.RequisicaoNovoProf;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import lombok.ToString;
@@ -34,10 +35,7 @@ public class Professor {
         this.salario = salario;
         this.status = status;
     }
-    
-    public int oi(){
-        return 100;
-    }
+
     
     public Long getId() {
         return id;

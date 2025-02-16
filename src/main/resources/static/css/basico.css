@@ -64,3 +64,9 @@ a:hover {
 .espaco-cima{
     margin-top: 12px;
 }
+.troll {
+   width: 100%; height: auto;
+}
+.troll:hover {
+    cursor: progress;
+}

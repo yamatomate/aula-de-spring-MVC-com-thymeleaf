@@ -21,18 +21,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author gusta
  */
+@RequestMapping("/professores")
 @Controller
 public class ProfessorController {
 
     @Autowired
     ProfessorRepository professorRepository;
 
-    @GetMapping("/professores")
+    @GetMapping("")
     public ModelAndView index(HttpServletRequest request) {
         List<Professor> professores = this.professorRepository.findAll();
         ModelAndView mv = new ModelAndView("professores/index");
@@ -41,7 +44,7 @@ public class ProfessorController {
         return mv;
     }
 
-    @GetMapping("/professores/novo")
+    @GetMapping("/novo")
     public ModelAndView NovoProfessor(HttpServletRequest request, RequisicaoNovoProf requisicao) {
         ModelAndView mvProfessorNovo = new ModelAndView("professores/novo");
         mvProfessorNovo.addObject("caminho", request.getRequestURI());
@@ -49,7 +52,25 @@ public class ProfessorController {
         return mvProfessorNovo;
     }
 
-    @PostMapping("/professores")
+    @GetMapping("{id}/editar")
+    public ModelAndView EditarProfessor(@PathVariable Long id, HttpServletRequest request, RequisicaoNovoProf requisicao) {
+        Optional<Professor> optional = this.professorRepository.findById(id);
+        if (optional.isPresent()) {
+            Professor professor = optional.get();
+            requisicao.fromProfessor(professor);
+            
+            ModelAndView mvProfessorEditar = new ModelAndView("professores/editar");
+            mvProfessorEditar.addObject("caminho", request.getRequestURI());
+            mvProfessorEditar.addObject("statusProfessor", StatusProfessor.values());
+            mvProfessorEditar.addObject("IdProf", professor.getId());
+            
+            return mvProfessorEditar;
+        } else {
+            return new ModelAndView("redirect:/professores"); 
+        }
+    }
+
+    @PostMapping("")
     public ModelAndView SalvarNovoProfessor(@Valid RequisicaoNovoProf professorNV, BindingResult bindingResult) {//o correto seria criar mas usarei salvar
         System.out.println("**************************\nnovo professor criado: "
                 + professorNV.toString()
@@ -67,8 +88,9 @@ public class ProfessorController {
         }
 
     }
+    
 
-    @GetMapping("/professores/{id}")
+    @GetMapping("/{id}")
     public ModelAndView mostrar(@PathVariable Long id, HttpServletRequest request) {
         Optional<Professor> optional = this.professorRepository.findById(id);
         if (optional.isPresent()) {
@@ -83,4 +105,5 @@ public class ProfessorController {
             return new ModelAndView("redirect:/professores");
         }
     }
+
 }

@@ -29,7 +29,7 @@
                         <td th:text="${professor.status}">Status_professor</td>
                         <td id="ajeita">
                             <a th:href="@{/professores/{professorID}(professorID = ${professor.id})}" class="btn btn-primary">detalhes</a> |
-                            <a href="" class="btn btn-success">editar</a> |
+                            <a th:href="@{/professores/{professorID}/editar (professorID = ${professor.id})}" class="btn btn-success">editar</a> |
                             <a href="" class="btn btn-danger">remover</a>
                         </td>
                     </tr>

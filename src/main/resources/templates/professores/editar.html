@@ -1,17 +1,17 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{fragmentos :: cabeca('Novo Professor')}">
+<head th:insert="~{fragmentos :: cabeca('Editar o Professor')}">
 </head>
 <body>
     <div class="container corpo">
         <div class="row">
             <div class="col-md-8">
-                <header th:replace="fragmentos :: cabecalho('Formualrio do novo Professor')">
+                <header th:replace="fragmentos :: cabecalho('Edição do Professor #' + ${IdProf})">
                 </header>
-                <form th:object="${requisicaoNovoProf}" action="/professores" method="POST">
+                <form th:object="${requisicaoNovoProf}" action="/professores" method="PUT">
                     <label>Nome do Professor:</label> <br>
                         
-                    <input class="form-control" th:errorclass="is-invalid" type="text" id="tamanho" th:field="*{nomeDTO}">
+                        <input class="form-control" th:errorclass="is-invalid" type="text" id="tamanho" th:field="*{nomeDTO}">
                     <div class="invalid-feedback" th:errors="*{nomeDTO}"></div>
                     <br>
                         
@@ -34,7 +34,7 @@
                 <a class="btn btn-secondary espaco-cima" href="javascript:history.back()"> voltar</a>
             </div>
             <div class="col-md-4">
-                <img src="https://i.pinimg.com/originals/77/85/fc/7785fca11d1f66e51627d67d3438cdf7.gif">
+                <img class="troll" src="https://i.pinimg.com/originals/77/85/fc/7785fca11d1f66e51627d67d3438cdf7.gif" style="width: 100%; height: auto;">
             </div>
         </div>
     </div>
