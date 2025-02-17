@@ -58,15 +58,15 @@ public class ProfessorController {
         if (optional.isPresent()) {
             Professor professor = optional.get();
             requisicao.fromProfessor(professor);
-            
+
             ModelAndView mvProfessorEditar = new ModelAndView("professores/editar");
             mvProfessorEditar.addObject("caminho", request.getRequestURI());
             mvProfessorEditar.addObject("statusProfessor", StatusProfessor.values());
             mvProfessorEditar.addObject("IdProf", professor.getId());
-            
+
             return mvProfessorEditar;
         } else {
-            return new ModelAndView("redirect:/professores"); 
+            return new ModelAndView("redirect:/professores");
         }
     }
 
@@ -84,11 +84,10 @@ public class ProfessorController {
         } else {
             Professor professor = professorNV.toProfessor();
             this.professorRepository.save(professor);
-            return new ModelAndView("redirect:/professores/"+professor.getId());
+            return new ModelAndView("redirect:/professores/" + professor.getId());
         }
 
     }
-    
 
     @GetMapping("/{id}")
     public ModelAndView mostrar(@PathVariable Long id, HttpServletRequest request) {
@@ -103,6 +102,29 @@ public class ProfessorController {
         {
             System.out.println("#################\nnn foi encontrado o " + id);
             return new ModelAndView("redirect:/professores");
+        }
+    }
+
+    @PostMapping("/{id}")
+    public ModelAndView SalvarProfEditado(@PathVariable Long id,
+            @Valid RequisicaoNovoProf professorED, BindingResult bindingResult) {
+        System.out.println("################\n" + professorED + "\n################");
+        
+        if (bindingResult.hasErrors()) {
+            System.out.println("DEU RUIMM!!!!!!" + bindingResult.getAllErrors());
+            return null;
+        } else {
+            Optional<Professor> optional = this.professorRepository.findById(id);
+
+            if (optional.isPresent()) {
+                Professor professor = optional.get();
+                Professor professorEditado = professorED.toProfessor(professor);
+                System.out.println("antes:"+professor.toString()+"\ndepois:"+professorEditado.toString());
+                return new ModelAndView("redirect:/professores");
+            } else {
+                System.out.println("nn foi achado nenhum professor com id" + id);
+                return new ModelAndView("redirect:/professores");
+            }
         }
     }
 

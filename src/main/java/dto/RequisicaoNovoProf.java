@@ -35,6 +35,13 @@ public class RequisicaoNovoProf {
         Professor professor = new Professor(this.nomeDTO, this.salarioDTO, this.statusProfessorDTO);
         return professor;
     }
+    
+    public Professor toProfessor(Professor prof){
+        prof.setNome(this.nomeDTO);
+        prof.setSalario(this.salarioDTO);
+        prof.setStatus(this.statusProfessorDTO);
+        return prof;
+    }
 
     public String getNomeDTO() {
         return nomeDTO;
