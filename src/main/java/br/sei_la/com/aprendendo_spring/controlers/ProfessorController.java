@@ -58,6 +58,8 @@ public class ProfessorController {
         if (optional.isPresent()) {
             Professor professor = optional.get();
             requisicao.fromProfessor(professor);
+            System.out.println(professor.toString());
+            System.out.println(requisicao.toString());
 
             ModelAndView mvProfessorEditar = new ModelAndView("professores/editar");
             mvProfessorEditar.addObject("caminho", request.getRequestURI());
@@ -89,6 +91,31 @@ public class ProfessorController {
 
     }
 
+    @PostMapping("/{id}")
+    public ModelAndView SalvarProfEditado(@PathVariable Long id,
+            @Valid RequisicaoNovoProf professorDTO, BindingResult bindingResult) {
+       
+        if (bindingResult.hasErrors()) {
+            System.out.println("deu erro!!");
+            ModelAndView mv = new ModelAndView("/professores/editar");
+            mv.addObject("statusProfessor", StatusProfessor.values());
+            return mv;
+            
+        } else {
+            
+            Optional<Professor> optional = this.professorRepository.findById(id);
+
+            if (optional.isPresent()) {
+                Professor professor = professorDTO.toProfessor(optional.get());
+                this.professorRepository.save(professor);
+                return new ModelAndView("redirect:/professores/"+professor.getId());
+            } else {
+                System.out.println("nn foi achado nenhum professor com id" + id);
+                return new ModelAndView("redirect:/professores");
+            }
+        }
+    }
+
     @GetMapping("/{id}")
     public ModelAndView mostrar(@PathVariable Long id, HttpServletRequest request) {
         Optional<Professor> optional = this.professorRepository.findById(id);
@@ -102,29 +129,6 @@ public class ProfessorController {
         {
             System.out.println("#################\nnn foi encontrado o " + id);
             return new ModelAndView("redirect:/professores");
-        }
-    }
-
-    @PostMapping("/{id}")
-    public ModelAndView SalvarProfEditado(@PathVariable Long id,
-            @Valid RequisicaoNovoProf professorED, BindingResult bindingResult) {
-        System.out.println("################\n" + professorED + "\n################");
-        
-        if (bindingResult.hasErrors()) {
-            System.out.println("DEU RUIMM!!!!!!" + bindingResult.getAllErrors());
-            return null;
-        } else {
-            Optional<Professor> optional = this.professorRepository.findById(id);
-
-            if (optional.isPresent()) {
-                Professor professor = optional.get();
-                Professor professorEditado = professorED.toProfessor(professor);
-                System.out.println("antes:"+professor.toString()+"\ndepois:"+professorEditado.toString());
-                return new ModelAndView("redirect:/professores");
-            } else {
-                System.out.println("nn foi achado nenhum professor com id" + id);
-                return new ModelAndView("redirect:/professores");
-            }
         }
     }
 

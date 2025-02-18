@@ -6,7 +6,7 @@
     <div class="container corpo">
         <div class="row">
             <div class="col-md-8">
-                <header th:replace="fragmentos :: cabecalho('Edição do Professor #' + ${IdProf})">
+                <header th:replace="~{fragmentos :: cabecalho('Edição do Professor #' + ${IdProf})}">
                 </header>
                 <form th:object="${requisicaoNovoProf}" th:action="@{/professores/{id-prof} (id-prof = ${IdProf})}" method="POST">
                     <label>Nome do Professor:</label> <br>

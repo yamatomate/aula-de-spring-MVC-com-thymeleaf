@@ -16,7 +16,7 @@
                     <b>Status:</b> <span th:text="${professor.status.toString()}"></span> <br>
                 </div>
                 <div>
-                    <a class="btn btn-success" href="#">Editar</a>
+                    <a class="btn btn-success" th:href="@{/professores/{IdProf}/editar (IdProf = ${professor.id})}">Editar</a>
                     <a class="btn btn-secondary" href="/professores">Voltar</a>
                 </div>
             </main>
