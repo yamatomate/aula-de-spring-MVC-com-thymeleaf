@@ -20,6 +20,7 @@ import dto.RequisicaoNovoProf;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.Optional;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -131,5 +132,16 @@ public class ProfessorController {
             return new ModelAndView("redirect:/professores");
         }
     }
-
+    
+    @GetMapping("/{id}/deletar")
+    public String deletando(@PathVariable Long id){
+        System.out.println("deletando");
+        try{
+            this.professorRepository.deleteById(id);
+            return "redirect:/professores";
+        } catch (EmptyResultDataAccessException e){
+            System.out.println(e);
+            return "redirect:/professores";
+        }
+    }
 }
